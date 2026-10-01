@@ -1,0 +1,23 @@
+@keyframes radar-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.leaflet-radar-ring {
+  position: relative;
+}
+
+.leaflet-radar-ring::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid rgba(239, 68, 68, 0.7);
+  animation: radar-ripple 2s infinite ease-out;
+}

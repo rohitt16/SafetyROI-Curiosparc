@@ -1,0 +1,12 @@
+<div id="cause-breakdown" data-state="{{ payload.state }}" data-year="{{ payload.year }}">
+  <h3>Top causes — {{ payload.state }} ({{ payload.year }})</h3>
+  {% if payload.trend_note %}<p data-component="trend-note">{{ payload.trend_note }}</p>{% endif %}
+  <ul data-component="cause-list">
+    {% for c in payload.breakdown %}
+    <li data-cause="{{ c.cause }}" data-share="{{ c.share_pct }}">
+      <span class="cause-label">{{ c.cause }}</span>
+      <span class="cause-share">{{ c.share_pct }}%</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+<div id="forecast" data-state="{{ payload.state }}" data-method="{{ payload.method }}">
+  <h3>Accident forecast — {{ payload.state }}</h3>
+  {% if payload.model_explainability %}
+  <p data-component="model-note">
+    Trend: {{ payload.model_explainability.trend_direction }}
+    (R&sup2; = {{ payload.model_explainability.r_squared }})
+  </p>
+  {% elif payload.note %}
+  <p data-component="model-note">{{ payload.note }}</p>
+  {% endif %}
+  <table data-component="forecast-table">
+    <thead><tr><th>Year</th><th>Accidents (history/forecast)</th></tr></thead>
+    <tbody>
+      {% for h in payload.history %}
+      <tr data-kind="history"><td>{{ h.year }}</td><td>{{ h.accidents }}</td></tr>
+      {% endfor %}
+      {% for f in payload.forecast %}
+      <tr data-kind="forecast"><td>{{ f.year }}</td><td>{{ f.predicted_accidents }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

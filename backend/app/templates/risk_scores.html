@@ -1,0 +1,26 @@
+<div id="risk-scores" data-year="{{ payload.year }}">
+  <table data-component="risk-scores-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Risk score</th>
+        <th>Accidents</th>
+        <th>Fatalities</th>
+        <th>YoY change (%)</th>
+        <th>Top factor</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in payload.results %}
+      <tr data-state="{{ r.state }}" data-risk-score="{{ r.risk_score }}">
+        <td>{{ r.state }}</td>
+        <td>{{ r.risk_score }}</td>
+        <td>{{ r.metrics.accidents }}</td>
+        <td>{{ r.metrics.fatalities }}</td>
+        <td>{{ r.metrics.yoy_pct_change }}</td>
+        <td>{{ r.reasoning[0].factor if r.reasoning else "-" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

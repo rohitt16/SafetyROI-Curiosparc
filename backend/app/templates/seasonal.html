@@ -1,0 +1,17 @@
+<div id="seasonal-risk" data-state="{{ payload.state }}">
+  <h3>Seasonal risk — {{ payload.state }}</h3>
+  <p data-component="note">{{ payload.note }}</p>
+  <p>High-risk months: {{ payload.high_risk_months | join(", ") }}</p>
+  <table data-component="seasonal-table">
+    <thead><tr><th>Month</th><th>Relative risk index</th><th>Flag</th></tr></thead>
+    <tbody>
+      {% for m in payload.months %}
+      <tr data-month="{{ m.month }}" data-flag="{{ m.flag }}">
+        <td>{{ m.month }}</td>
+        <td>{{ m.relative_risk_index }}</td>
+        <td>{{ m.flag }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

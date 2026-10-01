@@ -1,0 +1,31 @@
+<div id="budget-allocation">
+  <h3>Budget allocation</h3>
+  <p data-component="methodology">{{ payload.methodology }}</p>
+  <ul data-component="allocation-summary">
+    <li>Budget: {{ payload.total_budget_lakhs }} lakh</li>
+    <li>Used: {{ payload.total_cost_used_lakhs }} lakh</li>
+    <li>Remaining: {{ payload.budget_remaining_lakhs }} lakh</li>
+    <li>Estimated lives saved / yr: {{ payload.total_estimated_lives_saved_per_year }}</li>
+    <li>States covered: {{ payload.num_states_covered }}</li>
+  </ul>
+  <table data-component="allocation-table">
+    <thead>
+      <tr>
+        <th>#</th><th>State</th><th>Intervention</th><th>Cost (lakh)</th>
+        <th>Lives saved / yr</th><th>Funded</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in payload.allocations %}
+      <tr data-state="{{ a.state }}" data-funded="{{ a.funded }}">
+        <td>{{ a.rank }}</td>
+        <td>{{ a.state }}</td>
+        <td>{{ a.intervention }}</td>
+        <td>{{ a.estimated_cost_lakhs }}</td>
+        <td>{{ a.estimated_lives_saved_per_year }}</td>
+        <td>{{ "Yes" if a.funded else "No" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

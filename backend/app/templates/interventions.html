@@ -1,0 +1,13 @@
+<div id="interventions" data-state="{{ payload.state }}" data-year="{{ payload.year }}">
+  <h3>Recommended interventions — {{ payload.state }}</h3>
+  <div data-component="intervention-cards">
+    {% for rec in payload.recommendations %}
+    <div class="intervention-card" data-cause="{{ rec.cause_addressed }}" data-priority="{{ rec.priority_score }}">
+      <h4>{{ rec.intervention }}</h4>
+      <p>Addresses: {{ rec.cause_addressed }} ({{ rec.cause_share_pct }}% of accidents)</p>
+      <p>Expected impact: {{ rec.baseline_expected_impact_pct }}%</p>
+      <p>Reference cost: {{ rec.reference_cost_lakhs_per_unit }} lakh / {{ rec.unit_description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>

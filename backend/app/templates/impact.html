@@ -1,0 +1,24 @@
+<div id="impact-estimate" data-state="{{ payload.state }}" data-year="{{ payload.year }}">
+  <h3>Impact estimate — {{ payload.state }}</h3>
+  <p data-component="disclosure">{{ payload.disclosure }}</p>
+  <table data-component="impact-table">
+    <thead>
+      <tr>
+        <th>Intervention</th>
+        <th>Adjusted impact (%)</th>
+        <th>Est. accidents prevented / yr</th>
+        <th>Est. lives saved / yr</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in payload.estimates %}
+      <tr data-intervention="{{ e.intervention }}">
+        <td>{{ e.intervention }}</td>
+        <td>{{ e.adjusted_expected_impact_pct }}</td>
+        <td>{{ e.estimated_accidents_prevented_per_year }}</td>
+        <td>{{ e.estimated_lives_saved_per_year }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
